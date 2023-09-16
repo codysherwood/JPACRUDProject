@@ -42,9 +42,9 @@ class SuperHeroTest {
 	
 
 	@Test
-	void test() {
+	void get_hero_name_() {
 		assertNotNull(hero);
-		assertEquals("Cody", hero.getName());
+		assertEquals("Spider-Man", hero.getName());
 	}
 
 }
