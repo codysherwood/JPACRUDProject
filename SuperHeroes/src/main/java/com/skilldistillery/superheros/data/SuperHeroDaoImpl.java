@@ -24,14 +24,16 @@ public class SuperHeroDaoImpl implements SuperHeroDAO {
 	}
 
 	@Override
-	public List<SuperHero> findAll() {
+	public List<SuperHero> findAllHeroes() {
 		String jpql = "select h from SuperHero h";
 		return em.createQuery(jpql, SuperHero.class).getResultList();
 	}
 
 	@Override
 	public SuperHero create(SuperHero newHero) {
-		// TODO Auto-generated method stub
+		String jpql = "insert into SuperHero (name, height_in_inches,"
+		+	"weight_in_pounds, description, image_url)"
+				+"values (?,?,?,?,?)";
 		return null;
 	}
 
