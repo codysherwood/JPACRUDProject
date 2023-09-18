@@ -3,9 +3,12 @@ package com.skilldistillery.superheros.data;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.hibernate.query.ImmutableEntityUpdateQueryHandlingMode;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.superheros.entities.SuperHero;
@@ -19,7 +22,6 @@ public class SuperHeroDaoImpl implements SuperHeroDAO {
 	
 	@Override
 	public SuperHero findById(int heroId) {
-		
 		return em.find(SuperHero.class, heroId);
 	}
 
@@ -30,11 +32,15 @@ public class SuperHeroDaoImpl implements SuperHeroDAO {
 	}
 
 	@Override
-	public SuperHero create(SuperHero newHero) {
-		String jpql = "insert into SuperHero (name, height_in_inches,"
-		+	"weight_in_pounds, description, image_url)"
-				+"values (?,?,?,?,?)";
-		return null;
+	public SuperHero create(SuperHero hero) {
+		SuperHero newHero = new SuperHero();
+		newHero.setName(hero.getName());
+		newHero.setHeightInInches(hero.getHeightInInches());
+		newHero.setWeightInPounds(hero.getWeightInPounds());
+		newHero.setDescription(hero.getDescription());
+		newHero.setImageUrl(hero.getImageUrl());
+		em.persist(hero);
+		return newHero;
 	}
 
 	@Override
