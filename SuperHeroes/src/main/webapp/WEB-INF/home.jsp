@@ -17,7 +17,7 @@
 		<button>Display Hero</button>
 	</form>
 
-	<form action="createHero.do" method="get">
+	<form action="createHero.do" method="post">
 		<h3>Create Hero</h3>
 		<br>
 

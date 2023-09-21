@@ -16,10 +16,10 @@ import com.skilldistillery.superheros.entities.SuperHero;
 @Service
 @Transactional
 public class SuperHeroDaoImpl implements SuperHeroDAO {
-	
+
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@Override
 	public SuperHero findById(int heroId) {
 		return em.find(SuperHero.class, heroId);
@@ -33,26 +33,31 @@ public class SuperHeroDaoImpl implements SuperHeroDAO {
 
 	@Override
 	public SuperHero create(SuperHero hero) {
-		SuperHero newHero = new SuperHero();
-		newHero.setName(hero.getName());
-		newHero.setHeightInInches(hero.getHeightInInches());
-		newHero.setWeightInPounds(hero.getWeightInPounds());
-		newHero.setDescription(hero.getDescription());
-		newHero.setImageUrl(hero.getImageUrl());
 		em.persist(hero);
-		return newHero;
+		return hero;
 	}
 
 	@Override
 	public SuperHero update(SuperHero updatingHero) {
-		// TODO Auto-generated method stub
-		return null;
+		SuperHero updatedHero = em.find(SuperHero.class, updatingHero.getId());
+		updatedHero.setName(updatingHero.getName());
+		updatedHero.setHeightInInches(updatingHero.getHeightInInches());
+		updatedHero.setWeightInPounds(updatingHero.getWeightInPounds());
+		updatedHero.setDescription(updatingHero.getDescription());
+		updatedHero.setImageUrl(updatingHero.getImageUrl());
+		return updatedHero;
 	}
 
 	@Override
 	public boolean deleteById(int heroId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deletedHero = false;
+		SuperHero hero = em.find(SuperHero.class, heroId);
+		if (hero != null) {
+			em.remove(hero);
+			deletedHero = true;
+		}
+		return deletedHero;
+
 	}
 
 }
