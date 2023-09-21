@@ -24,13 +24,13 @@ ${hero.description}
 
 		<input type="hidden" value=${hero.id} name="id">
 		Name:
-		<input type="text" value=${hero.name} name="name" required="required field"><br>
+		<input type="text" value="${hero.name}" name="name" required="required field"><br>
 		Height In Inches:
 		<input type="number" value=${hero.heightInInches} name="heightInInches"><br>
 		Weight In Pounds:
 		<input type="number" value=${hero.weightInPounds} name="weightInPounds"><br>
 		Description:
-		<input type="textarea" value=${hero.description} name="description"><br>
+		<input type="text" value="${hero.description}" name="description"><br>
 		Image URL:
 		<input type="text" value=${hero.imageUrl} name="imageUrl"><br>
 		
